@@ -1,4 +1,4 @@
-OVIGNE Adrien &	KLAAS Guillaume
+OVIGNE Adrien *(INFRA)* & KLAAS Guillaume *(INFO)*
 
 # TP2 BASH
 
