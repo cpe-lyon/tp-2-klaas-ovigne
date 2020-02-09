@@ -103,139 +103,155 @@ pour executer : **./nomduscript.sh**
 
 ### isReal.sh
 
-	#!/bin/bash
 
-	function is_number()
+```shell
+#!/bin/bash
 
-	{
+function is_number()
 
-	re='^[+-]?[0-9]+([.][0-9]+)?$'
+{
 
-	if ! [[ $1 =~ $re ]] ; then
+re='^[+-]?[0-9]+([.][0-9]+)?$'
 
-		return 1
+if ! [[ $1 =~ $re ]] ; then
 
-	else
+	return 1
 
-		return 0
+else
 
-	fi
+	return 0
 
-	}
+fi
 
-	read -p 'entrez votre nombre' re
+}
 
-	is_number $re
+read -p 'entrez votre nombre' re
 
-	if [[ $? == 1 ]] ; then
+is_number $re
 
-	echo non
+if [[ $? == 1 ]] ; then
 
-	else
+echo non
 
-	echo oui
+else
 
-	fi
+echo oui
 
+fi
+```
 
 ## Exercice 4. Contrôle d’utilisateur
+
 
 *Écrivez un script qui vérifie l’existence d’un utilisateur dont le nom est donné en paramètre du script. Si le*
 *script est appelé sans nom d’utilisateur, il affiche le message : ”Utilisation : nom_du_script nom_utilisateur”,*
 *où nom_du_script est le nom de votre script récupéré automatiquement (si vous changez le nom de votre*
 *script, le message doit changer automatiquement)*
 
+
 ### test_utilisateur.sh
 
-	#!/bin/bash
 
-	if [ $# = 0 ]; then
+```shell
+#!/bin/bash
 
-		echo "utilisation: $0 nom_utilisateur"
+if [ $# = 0 ]; then
+
+	echo "utilisation: $0 nom_utilisateur"
+
+else
+
+	id -u $1
+
+	if [[$? = 1]]; then
+
+	echo "utilisateur inexistant"
 
 	else
 
-		id -u $1
-
-		if [[$? = 1]]; then
-
-		echo "utilisateur inexistant"
-
-		else
-
-		echo "utilisateur existant"
-
-		fi
+	echo "utilisateur existant"
 
 	fi
 
+fi
+```
+
+
 ## Exercice 5. Factorielle
+
 
 *Écrivez un programme qui calcule la factorielle d’un entier naturel passé en paramètre (on supposera que*
 *l’utilisateur saisit toujours un entier naturel).*
 
+
 ## factorielle.sh
+
+
 ```shell
-	#!/bin/bash
+#!/bin/bash
 
-	i=0
+i=0
 
-	read -p 'nb:' a
+read -p 'nb:' a
 
-	resultat=1
+resultat=1
 
-	while [[ $i<$a ]]
+while [[ $i<$a ]]
 
-		do
+	do
 
-			i=$(($i + 1))
+		i=$(($i + 1))
 
-			resultat=$(($resultat*$i))
+		resultat=$(($resultat*$i))
 
-		done
+	done
 
-	echo $resultat
+echo $resultat
 ```
 
 ## Exercice 6. Le juste prix
 
+
 *Écrivez un script qui génère un nombre aléatoire entre 1 et 1000 et demande à l’utilisateur de le deviner.
 Le programme écrira ”C’est plus !”, ”C’est moins !” ou ”Gagné !” selon les cas (vous utiliserez $RANDOM).*
 
+
 ### leJustePrix.sh
 
-	#!/bin/bash
 
-	echo "BIENVENUE DANS LE JUSTE PRIX!!!!!"
+```shell
+#!/bin/bash
 
-	echo "C'EST PARTIIIIIII !!!!!!"
+echo "BIENVENUE DANS LE JUSTE PRIX!!!!!"
+
+echo "C'EST PARTIIIIIII !!!!!!"
+
+read -p 'Quelle est votre proposition' proposition
+
+MAX=1000
+
+reel=$((RANDOM*(1+MAX)/32767))
+
+while [[ $reel != $proposition ]]
+
+	do
+
+		if [[ $reel > $proposition ]]
+
+			echo "Plus haut!"
+
+		else
+
+			echo "Plus bas!"
+
+		fi
 
 	read -p 'Quelle est votre proposition' proposition
 
-	MAX=1000
+	done
 
-	reel=$((RANDOM*(1+MAX)/32767))
-
-	while [[ $reel != $proposition ]]
-
-		do
-
-			if [[ $reel > $proposition ]]
-
-				echo "Plus haut!"
-
-			else
-
-				echo "Plus bas!"
-
-			fi
-
-		read -p 'Quelle est votre proposition' proposition
-
-		done
-
-	echo "ET C'EST GAGNÉ!!!"
-
+echo "ET C'EST GAGNÉ!!!"
+```
 
 ## Exercice 7. Statistiques
 
@@ -249,76 +265,76 @@ Le programme écrira ”C’est plus !”, ”C’est moins !” ou ”Gagné !�
 *stockées au fur et à mesure dans un tableau.*
 
 ### stats.sh
+```shell
+#!/bin/bash
 
-	#!/bin/bash
+function is_entier() {
 
-	function is_entier() {
+	if [ $(($1%1)) -eq 0 ]; then
 
-		if [ $(($1%1)) -eq 0 ]; then
+		return 1
 
-			return 1
+	else
 
-		else
+		return 0
 
-			return 0
+	fi
 
-		fi
+}
 
-	}
+min=$1
 
-	min=$1
+max=$1
 
-	max=$1
+total=$#
 
-	total=$#
+while (("$#")); do
 
-	while (("$#")); do
+	if [ $1 -lt 100 -a $1 -gt -100 ];then
 
-		if [ $1 -lt 100 -a $1 -gt -100 ];then
+		is_entier $1
 
-			is_entier $1
+		if [ $? -eq 1 ]; then
 
-			if [ $? -eq 1 ]; then
-
-				somme=$((somme+$1))
+			somme=$((somme+$1))
 
 
-				if [ $1 -gt $max ]
+			if [ $1 -gt $max ]
 
-				then
+			then
 
-					max=$1
+				max=$1
 
-				elif [ $1 -lt $min ]
+			elif [ $1 -lt $min ]
 
-				then
+			then
 
-					min=$1
-
-				fi
-
-			else
-
-				echo "non"
-
+				min=$1
 
 			fi
 
 		else
-			echo "Nombre pas conforme, veuillez recommencer"
 
-			exit
+			echo "non"
+
 
 		fi
 
-		shift
-	done
+	else
+		echo "Nombre pas conforme, veuillez recommencer"
 
-	moyenne=$(($somme/$total))
+		exit
 
-	echo "moyenne : $moyenne"
+	fi
 
-	echo " min : $min"
+	shift
+done
 
-	echo " max : $max"
+moyenne=$(($somme/$total))
 
+echo "moyenne : $moyenne"
+
+echo " min : $min"
+
+echo " max : $max"
+```
