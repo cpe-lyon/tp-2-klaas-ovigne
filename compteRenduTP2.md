@@ -175,7 +175,7 @@ pour executer : **./nomduscript.sh**
 *l’utilisateur saisit toujours un entier naturel).*
 
 ## factorielle.sh
-
+```shell
 	#!/bin/bash
 
 	i=0
@@ -195,6 +195,7 @@ pour executer : **./nomduscript.sh**
 		done
 
 	echo $resultat
+```
 
 ## Exercice 6. Le juste prix
 
