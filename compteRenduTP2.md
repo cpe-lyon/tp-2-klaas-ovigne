@@ -1,8 +1,6 @@
-OVIGNE Adrien
-
+OVIGNE Adrien													equipe 15
+	
 KLAAS Guillaume
-
-equipe 15
 
 
 VAR ENVIRONNEMENT
