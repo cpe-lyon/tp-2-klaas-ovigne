@@ -72,34 +72,40 @@ pour executer : **./nomduscript.sh**
 
 ### testpwd.sh
 
-	#!/bin/bash
+```shell
+#!/bin/bash
 
-	read -p 'Entre ton mdp:' -s mdp
+read -p 'Entre ton mdp:' -s mdp
 
-	if [ $mdp = "abcd" ]; then
+if [ $mdp = "abcd" ]; then
 
-		echo "Bon mot de passe"
+	echo "Bon mot de passe"
 
-	else
+else
 
-		echo "Mauvais mot de passe"
+	echo "Mauvais mot de passe"
 
-	fi
+fi
+```
 
 ## Exercice 3. Expressions rationnelles
 
 *Ecrivez un script qui prend un paramètre et utilise la fonction suivante pour vérifier que ce paramètre*
 *est un nombre réel :*
 
-	function is_number()
-	{
-		re='^[+-]?[0-9]+([.][0-9]+)?$'
-		if ! [[ $1 =~ $re ]] ; then
-			return 1
-		else
-			return 0
-		fi
-	}
+On utilise :
+
+```shell
+function is_number()
+{
+	re='^[+-]?[0-9]+([.][0-9]+)?$'
+	if ! [[ $1 =~ $re ]] ; then
+		return 1
+	else
+		return 0
+	fi
+}
+```
 
 ### isReal.sh
 
@@ -107,23 +113,6 @@ pour executer : **./nomduscript.sh**
 ```shell
 #!/bin/bash
 
-function is_number()
-
-{
-
-re='^[+-]?[0-9]+([.][0-9]+)?$'
-
-if ! [[ $1 =~ $re ]] ; then
-
-	return 1
-
-else
-
-	return 0
-
-fi
-
-}
 
 read -p 'entrez votre nombre' re
 
