@@ -1,9 +1,7 @@
 OVIGNE Adrien &	KLAAS Guillaume
 
 
-*Exercice 1. Variables d’environnement*
-
-VAR ENVIRONNEMENT
+# Exercice 1. Variables d’environnement
 
 1. *Dans quels dossiers bash trouve-t-il les commandes tapées par l’utilisateur ?*
 
@@ -59,13 +57,13 @@ On entre les commandes suivantes: **MY_VAR="test"** puis **echo $MY_VAR**
 
 **echo \$HOME = $HOME** le "\" permet d'afficher "HOME" au lieu du contenu de la variable d'environnement.
 
-EXOS:
+# Programmation Bash
 
 pour ajouter script a la variable d'environnement PATH:**export PATH="$HOME/script:$PATH"**
 
 pour executer : **./nomduscript.sh**
 
-# testpwd.sh
+## testpwd.sh
 
 #!/bin/bash
 read -p 'Entre ton mdp:' -s mdp
