@@ -23,7 +23,7 @@ Il s'agit de la variable d'environnement **HOME**.
 
 **SHELL**:  montre le chemin de l'interpreteur shell utilisé par defaut
 
-**_**:
+**\_**:  montre le chemin vers la commande qui est executée
 
 4. *Créez une variable locale **MY_VAR** (le contenu n’a pas d’importance). Vérifiez que la variable existe.* 
 
